@@ -17,4 +17,4 @@ git tag ${CURRENT_VERSION}
 git push --tags origin master
 
 # uses httpie
-http --json POST "https://api.github.com/repos/alanfranz/releases-api-test" "Authorization:token ${GITHUB_TOKEN}" "tag_name=${CURRENT_VERSION}" "name=${CURRENT_VERSION}"
+http --json POST "https://api.github.com/repos/alanfranz/releases-api-test/releases" "Authorization:token ${GITHUB_TOKEN}" "tag_name=${CURRENT_VERSION}" "name=${CURRENT_VERSION}"
