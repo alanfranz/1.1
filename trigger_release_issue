@@ -1,4 +1,8 @@
-#!/bin/bash
+#!/bin/bash -ex
+
+# accept github token as input
+GITHUB_TOKEN="$1"
+[ -n "$1" ]
 
 CURRENT_VERSION="$(cat VERSION)"
 echo "$RANDOM" > somedata
@@ -13,4 +17,4 @@ git tag ${CURRENT_VERSION}
 git push --tags origin master
 
 # uses httpie
-http --json POST "https://api.github.com/repos/alanfranz/releases-api-test" "tag_name=${CURRENT_VERSION}" "name=${CURRENT_VERSION}"
+http --json POST "https://api.github.com/repos/alanfranz/releases-api-test" "Authorization:token ${GITHUB_TOKEN}" "tag_name=${CURRENT_VERSION}" "name=${CURRENT_VERSION}"
