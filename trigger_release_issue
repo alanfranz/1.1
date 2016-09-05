@@ -19,5 +19,5 @@ git push --tags origin v1dev
 # uses httpie
 #http --json POST "https://api.github.com/repos/alanfranz/releases-api-test/releases" "Authorization:token ${GITHUB_TOKEN}" "tag_name=${CURRENT_VERSION}" "name=${CURRENT_VERSION}"
 
-gothub release --user alanfranz --repo releases-api-test --tag "${CURRENT_VERSION}" --name "${CURRENT_VERSION}"
-gothub upload --user alanfranz --repo releases-api-test --tag "${CURRENT_VERSION}" --file VERSION --name "VERSION"
+./gothub release --user alanfranz --repo releases-api-test --tag "${CURRENT_VERSION}" --name "${CURRENT_VERSION}"
+./gothub upload --user alanfranz --repo releases-api-test --tag "${CURRENT_VERSION}" --file VERSION --name "VERSION"
