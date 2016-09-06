@@ -20,7 +20,8 @@ do
     git tag ${CURRENT_VERSION}
     git push --tags origin master
     
-    sleep 5
+    # adding this sleep the problem disappears
+    #sleep 5
 
     # uses httpie
     http --check-status --json POST "https://api.github.com/repos/alanfranz/releases-api-test/releases" "Authorization:token ${GITHUB_TOKEN}" "tag_name=${CURRENT_VERSION}" "name=${CURRENT_VERSION}"
