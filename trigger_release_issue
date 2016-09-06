@@ -16,8 +16,12 @@ git commit -m "pulled up"
 git tag ${CURRENT_VERSION}
 git push --tags origin master
 
-# uses httpie
-http --json POST "https://api.github.com/repos/alanfranz/releases-api-test/releases" "Authorization:token ${GITHUB_TOKEN}" "tag_name=${CURRENT_VERSION}" "name=${CURRENT_VERSION}"
+while [ 0 ]
+do
+    echo "running at $(date)"
+    # uses httpie
+    http --check-status --json POST "https://api.github.com/repos/alanfranz/releases-api-test/releases" "Authorization:token ${GITHUB_TOKEN}" "tag_name=${CURRENT_VERSION}" "name=${CURRENT_VERSION}"
+done
 
 #./gothub -v release --user alanfranz --repo releases-api-test --tag "${CURRENT_VERSION}" --name "${CURRENT_VERSION}"
 #./gothub -v upload --user alanfranz --repo releases-api-test --tag "${CURRENT_VERSION}" --file VERSION --name "VERSION"
