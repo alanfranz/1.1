@@ -4,21 +4,22 @@
 export GITHUB_TOKEN="$1"
 [ -n "$1" ]
 
-CURRENT_VERSION="$(cat VERSION)"
-echo "$RANDOM" > somedata
-# pull up current version for next tests
-perl -pe 's/^((\d+\.)*)(\d+)(.*)$/$1.($3+1).$4/e' < VERSION > VERSION.tmp
-mv -f VERSION.tmp VERSION
-
-git add -A
-git commit -m "pulled up"
-
-git tag ${CURRENT_VERSION}
-git push --tags origin master
-
 while [ 0 ]
 do
     echo "running at $(date)"
+
+    CURRENT_VERSION="$(cat VERSION)"
+    echo "$RANDOM" > somedata
+    # pull up current version for next tests
+    perl -pe 's/^((\d+\.)*)(\d+)(.*)$/$1.($3+1).$4/e' < VERSION > VERSION.tmp
+    mv -f VERSION.tmp VERSION
+
+    git add -A
+    git commit -m "pulled up"
+
+    git tag ${CURRENT_VERSION}
+    git push --tags origin master
+
     # uses httpie
     http --check-status --json POST "https://api.github.com/repos/alanfranz/releases-api-test/releases" "Authorization:token ${GITHUB_TOKEN}" "tag_name=${CURRENT_VERSION}" "name=${CURRENT_VERSION}"
 done
